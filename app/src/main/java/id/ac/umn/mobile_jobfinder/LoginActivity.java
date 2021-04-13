@@ -12,10 +12,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText etEmail, etPassword;
     private Button btnSignIn;
+    private TextView tvRegister;
 
     private static final String[] PERMISSIONS = {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -66,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         btnSignIn = findViewById(R.id.btnSignIn);
+        tvRegister = findViewById(R.id.tvRegister);
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +76,14 @@ public class LoginActivity extends AppCompatActivity {
                 Intent SignIn = new Intent(LoginActivity.this, MainActivity.class);
                 startActivityForResult(SignIn, 0);
                 finish();
+            }
+        });
+
+        tvRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent keHalamanRegister = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivityForResult(keHalamanRegister, 1);
             }
         });
     }
