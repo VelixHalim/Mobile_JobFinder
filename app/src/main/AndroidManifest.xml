@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mobile_JobFinder">
-        <activity android:name=".All_JobActivity"></activity>
+        <activity android:name=".InsertJobPostActivity"></activity>
+        <activity android:name=".All_JobActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>

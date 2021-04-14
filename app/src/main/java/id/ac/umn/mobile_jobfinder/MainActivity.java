@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         btnPostJob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent(MainActivity.this, All_JobActivity.class));
+                startActivity(new Intent(MainActivity.this, InsertJobPostActivity.class));
             }
         });
     }
