@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "766847976949",
+    "project_id": "mobilejobfinder1",
+    "storage_bucket": "mobilejobfinder1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766847976949:android:afbc45cf75d067b4814cbc",
+        "android_client_info": {
+          "package_name": "id.ac.umn.mobile_jobfinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "766847976949-38vuu1m824g3adn1j2jkpfkvu9ke6lpc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.ac.umn.mobile_jobfinder",
+            "certificate_hash": "4ae624aa64719cf715fd06fe3385c0dd4b9a26d1"
+          }
+        },
+        {
+          "client_id": "766847976949-u8pnemjrt190pn00eqv9loimgf7eeo6k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4ncp-UlaqfGezEnd0cqmNH0helA2cJbc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "766847976949-u8pnemjrt190pn00eqv9loimgf7eeo6k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
