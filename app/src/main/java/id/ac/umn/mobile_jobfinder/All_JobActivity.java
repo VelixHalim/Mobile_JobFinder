@@ -20,8 +20,6 @@ public class All_JobActivity extends AppCompatActivity {
     NavigationView navigationView;
     Toolbar toolbar;
 
-    ActionBarDrawerToggle toggle;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,11 +28,11 @@ public class All_JobActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
-//        setSupportActionBar(toolbar);
+
+        setSupportActionBar(toolbar);
 //        supportActionBar
         navigationView.bringToFront();
-        //ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -58,6 +56,7 @@ public class All_JobActivity extends AppCompatActivity {
                 return true;
             }
         });
+        //navigationView.setNavigationItemSelectedListener(this);
         // end
     }
 
