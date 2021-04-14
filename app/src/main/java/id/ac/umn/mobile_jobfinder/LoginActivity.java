@@ -17,7 +17,7 @@ import android.widget.TextView;
 public class LoginActivity extends AppCompatActivity {
     private EditText etEmail, etPassword;
     private Button btnSignIn;
-    private TextView tvRegister;
+    private TextView tvRegister, tvIncorrect;
 
     private static final String[] PERMISSIONS = {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -69,13 +69,20 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         btnSignIn = findViewById(R.id.btnSignIn);
         tvRegister = findViewById(R.id.tvRegister);
+        tvIncorrect = findViewById(R.id.tvIncorrect);
+        tvIncorrect.setVisibility(View.INVISIBLE);
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent SignIn = new Intent(LoginActivity.this, MainActivity.class);
-                startActivityForResult(SignIn, 0);
-                finish();
+                if(etEmail.getText().toString().equalsIgnoreCase("admin") &&
+                etPassword.getText().toString().equalsIgnoreCase("admin")) {
+                    Intent SignIn = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivityForResult(SignIn, 0);
+                    finish();
+                } else {
+                    tvIncorrect.setVisibility(View.VISIBLE);
+                }
             }
         });
 

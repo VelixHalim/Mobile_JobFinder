@@ -34,28 +34,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.btnProfile) {
-
-        }
-
-        if (id == R.id.btnLogout) {
-            Intent Logout = new Intent(MainActivity.this, LoginActivity.class);
-            startActivityForResult(Logout, 3);
-            finish();
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

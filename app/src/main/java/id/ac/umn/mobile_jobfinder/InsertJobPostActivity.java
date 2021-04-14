@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,6 +51,9 @@ public class InsertJobPostActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.nav_home :
                         Toast.makeText(getApplicationContext(),"Balik ke home",Toast.LENGTH_LONG).show();
+                        Intent InsertJob_ke_Home = new Intent(InsertJobPostActivity.this, MainActivity.class);
+                        startActivityForResult(InsertJob_ke_Home, 7);
+                        finish();
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.btnProfile :
@@ -58,6 +62,9 @@ public class InsertJobPostActivity extends AppCompatActivity {
                         break;
                     case R.id.btnLogout :
                         Toast.makeText(getApplicationContext(),"Logout",Toast.LENGTH_LONG).show();
+                        Intent InsertJob_ke_Logout = new Intent(InsertJobPostActivity.this, LoginActivity.class);
+                        startActivityForResult(InsertJob_ke_Logout, 9);
+                        finish();
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                 }

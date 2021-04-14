@@ -47,6 +47,9 @@ public class All_JobActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.nav_home :
                         Toast.makeText(getApplicationContext(),"Balik ke home",Toast.LENGTH_LONG).show();
+                        Intent AllJob_ke_Home = new Intent(All_JobActivity.this, MainActivity.class);
+                        startActivityForResult(AllJob_ke_Home, 4);
+                        finish();
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.btnProfile :
@@ -55,6 +58,9 @@ public class All_JobActivity extends AppCompatActivity {
                         break;
                     case R.id.btnLogout :
                         Toast.makeText(getApplicationContext(),"Logout",Toast.LENGTH_LONG).show();
+                        Intent AllJob_ke_Logout = new Intent(All_JobActivity.this, LoginActivity.class);
+                        startActivityForResult(AllJob_ke_Logout, 6);
+                        finish();
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                 }

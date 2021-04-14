@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class RegisterActivity extends AppCompatActivity {
     private EditText etRegEmail, etRegPassword, etRetypePassword;
     private Button btnRegister;
-    private TextView tvSignIn;
+    private TextView tvSignIn, tvIncorrectRetype;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,8 @@ public class RegisterActivity extends AppCompatActivity {
         etRetypePassword = findViewById(R.id.etRetypePassword);
         btnRegister = findViewById(R.id.btnRegister);
         tvSignIn = findViewById(R.id.tvSignIn);
+        tvIncorrectRetype = findViewById(R.id.tvIncorrectRetype);
+        tvIncorrectRetype.setVisibility(View.INVISIBLE);
 
         tvSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,6 +33,19 @@ public class RegisterActivity extends AppCompatActivity {
                 Intent keHalamanLogin = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivityForResult(keHalamanLogin, 2);
                 finish();
+            }
+        });
+
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(etRegPassword.getText().toString().equalsIgnoreCase(etRetypePassword.getText().toString())) {
+                    Intent berhasilRegister = new Intent(RegisterActivity.this, LoginActivity.class);
+                    startActivityForResult(berhasilRegister, 3);
+                    finish();
+                } else {
+                    tvIncorrectRetype.setVisibility(View.VISIBLE);
+                }
             }
         });
     }
