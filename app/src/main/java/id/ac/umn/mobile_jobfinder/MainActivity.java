@@ -23,14 +23,14 @@ public class MainActivity extends AppCompatActivity {
         btnSeeJob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, All_Job.class));
+                startActivity(new Intent(MainActivity.this, All_JobActivity.class));
             }
         });
 
         btnPostJob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, All_Job.class));
+//                startActivity(new Intent(MainActivity.this, All_JobActivity.class));
             }
         });
     }
