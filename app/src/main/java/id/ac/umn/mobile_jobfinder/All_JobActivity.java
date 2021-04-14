@@ -26,7 +26,7 @@ public class All_JobActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_job);
-
+        //untuk menu start
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -58,6 +58,7 @@ public class All_JobActivity extends AppCompatActivity {
                 return true;
             }
         });
+        // end
     }
 
     @Override
