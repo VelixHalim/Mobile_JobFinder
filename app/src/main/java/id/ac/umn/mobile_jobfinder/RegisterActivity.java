@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class RegisterActivity extends AppCompatActivity {
-    private EditText etRegEmail, etRegPassword, etRetypePassword;
+    private EditText etRegEmail, etRegPassword, etRetypePassword, etRegNama;
     private Button btnRegister;
     private TextView tvSignIn, tvIncorrectRetype;
 
@@ -19,6 +19,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        etRegNama = findViewById(R.id.etRegNama);
         etRegEmail = findViewById(R.id.etRegEmail);
         etRegPassword = findViewById(R.id.etRegPassword);
         etRetypePassword = findViewById(R.id.etRetypePassword);
