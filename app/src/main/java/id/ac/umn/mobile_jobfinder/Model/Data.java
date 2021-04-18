@@ -1,6 +1,6 @@
 package id.ac.umn.mobile_jobfinder.Model;
 
-public class Data {]
+public class Data {
     String title;
     String description;
     String skills;
