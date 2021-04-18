@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -76,6 +77,7 @@ public class InsertJobPostActivity extends AppCompatActivity {
         // end
         //end toolbar
 
+
         //post job
         btnPost = findViewById(R.id.btnPost_Job);
         edtJobTitle = findViewById(R.id.edtJobTitle);
@@ -83,14 +85,55 @@ public class InsertJobPostActivity extends AppCompatActivity {
         edtSkill = findViewById(R.id.edtSkill);
         edtSalary = findViewById(R.id.edtSalary);
 
+    //error Message
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                String title=edtJobTitle.getText().toString().trim();
+                String description=edtJobDesc.getText().toString().trim();
+                String skills=edtSkill.getText().toString().trim();
+                String salary=edtSalary.getText().toString().trim();
+
+                if(TextUtils.isEmpty(title)){
+                    edtJobTitle.setError("This Field is Required");
+                    return;
+                }
+
+                if(TextUtils.isEmpty(description)){
+                    edtJobDesc.setError("This Field is Required");
+                    return;
+                }
+                if(TextUtils.isEmpty(skills)){
+                    edtSkill.setError("This Field is Required");
+                    return;
+                }
+                if(TextUtils.isEmpty(salary)){
+                    edtSalary.setError("This Field is Required");
+                    return;
+                }
+
+
 
             }
         });
         //end post job
     }
+
+   /* private void InsertJob(){
+
+        edtJobTitle=findViewById(R.id.edtJobTitle);
+        edtJobDesc=findViewById(R.id.edtJobDesc);
+        edtSkill=findViewById(R.id.edtSkill);
+        edtSalary=findViewById(R.id.edtSalary);
+
+        btnPost=findViewById(R.id.btnPost_Job);
+
+    }
+
+ */
+
+
 
     @Override
     public void onBackPressed() {
