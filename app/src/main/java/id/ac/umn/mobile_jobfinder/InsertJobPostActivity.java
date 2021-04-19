@@ -17,6 +17,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.DataCollectionDefaultChange;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class InsertJobPostActivity extends AppCompatActivity {
     //variable toolbar
@@ -29,6 +32,14 @@ public class InsertJobPostActivity extends AppCompatActivity {
     EditText edtJobTitle, edtJobDesc, edtSkill, edtSalary;
     Button btnPost;
     //end variable post job
+/*
+INI bagian firebase masih gatau harus diapain
+
+    FirebaseAuth mAuth;
+    DataCollectionDefaultChange mJobPost;
+
+*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +87,15 @@ public class InsertJobPostActivity extends AppCompatActivity {
         //navigationView.setNavigationItemSelectedListener(this);
         // end
         //end toolbar
+    /*
+    ini bagian connect ke database juga
 
+        mAuth=FirebaseAuth.getInstance();
+        FirebaseUser mUser=mAuth.getCurrentUser();
+        String uID=mUser.getUid();
+
+
+*/
 
         //post job
         btnPost = findViewById(R.id.btnPost_Job);
