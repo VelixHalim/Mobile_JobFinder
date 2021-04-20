@@ -20,8 +20,14 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.DataCollectionDefaultChange;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
-public class InsertJobPostActivity extends AppCompatActivity {
+import java.text.DateFormat;
+import java.util.Date;
+
+import id.ac.umn.mobile_jobfinder.Model.Data;
+
+public class InsertJobPostActivity<DatabaseReference> extends AppCompatActivity {
     //variable toolbar
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -30,13 +36,15 @@ public class InsertJobPostActivity extends AppCompatActivity {
 
     //variabel post job
     EditText edtJobTitle, edtJobDesc, edtSkill, edtSalary;
-    Button btnPost;
+    private Button btnPost;
+
+    private FirebaseAuth mAuth;
+    private DatabaseReference mJobPost;
     //end variable post job
 /*
 INI bagian firebase masih gatau harus diapain
 
-    FirebaseAuth mAuth;
-    DataCollectionDefaultChange mJobPost;
+
 
 */
 
@@ -52,6 +60,14 @@ INI bagian firebase masih gatau harus diapain
         toolbar = (Toolbar) findViewById(R.id.insert_job_toolbar);
 
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("PostJob");
+
+        mAuth=FirebaseAuth.getInstance();
+        FirebaseUser mUser=mAuth.getCurrentUser();
+        String uId=mUser.getUid();
+
+        mJobPost = (DatabaseReference) FirebaseDatabase.getInstance().getReference().child("Job Post").child(uId);
+
 
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
@@ -131,6 +147,13 @@ INI bagian firebase masih gatau harus diapain
                     edtSalary.setError("This Field is Required");
                     return;
                 }
+
+                //String id=mJobPost.push().getKey();
+                String date = DateFormat.getDateInstance().format(new Date());
+                //Data data = new Data(title, description,skills,salary,id,date);
+               // mJobPost.child(id).setValue(data);
+                Toast.makeText(getApplicationContext()," Sucessfull", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(),PostJobActivity.class));
 
 
 
