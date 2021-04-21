@@ -22,12 +22,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
+import com.google.firebase.database.DatabaseReference;
+
 import java.text.DateFormat;
 import java.util.Date;
 
 import id.ac.umn.mobile_jobfinder.Model.Data;
 
-public class InsertJobPostActivity<DatabaseReference> extends AppCompatActivity {
+public class InsertJobPostActivity extends AppCompatActivity {
     //variable toolbar
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -40,6 +42,8 @@ public class InsertJobPostActivity<DatabaseReference> extends AppCompatActivity 
 
     private FirebaseAuth mAuth;
     private DatabaseReference mJobPost;
+
+
     //end variable post job
 /*
 INI bagian firebase masih gatau harus diapain
@@ -66,7 +70,7 @@ INI bagian firebase masih gatau harus diapain
         FirebaseUser mUser = mAuth.getCurrentUser();
         String uId = mUser.getUid();
 
-        mJobPost = (DatabaseReference) FirebaseDatabase.getInstance().getReference().child("Job Post").child(uId);
+        mJobPost = FirebaseDatabase.getInstance().getReference().child("MobileJobFinder1").child(uId);
 
 
         navigationView.bringToFront();
