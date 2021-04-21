@@ -5,14 +5,10 @@ public class Data {
     String description;
     String skills;
     String salary;
-
-
     String id;
     String date;
 
-
     public Data(){
-
 
     }
 

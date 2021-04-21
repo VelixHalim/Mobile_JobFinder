@@ -62,9 +62,9 @@ INI bagian firebase masih gatau harus diapain
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("PostJob");
 
-        mAuth=FirebaseAuth.getInstance();
-        FirebaseUser mUser=mAuth.getCurrentUser();
-        String uId=mUser.getUid();
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser mUser = mAuth.getCurrentUser();
+        String uId = mUser.getUid();
 
         mJobPost = (DatabaseReference) FirebaseDatabase.getInstance().getReference().child("Job Post").child(uId);
 
@@ -148,10 +148,10 @@ INI bagian firebase masih gatau harus diapain
                     return;
                 }
 
-                //String id=mJobPost.push().getKey();
+                String id = mJobPost.push().getKey();
                 String date = DateFormat.getDateInstance().format(new Date());
-                //Data data = new Data(title, description,skills,salary,id,date);
-               // mJobPost.child(id).setValue(data);
+                Data data = new Data(title, description,skills,salary,id,date);
+                mJobPost.child(id).setValue(data);
                 Toast.makeText(getApplicationContext()," Sucessfull", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(),PostJobActivity.class));
 

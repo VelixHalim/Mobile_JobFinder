@@ -8,6 +8,8 @@ import android.os.Bundle;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class PostJobActivity extends AppCompatActivity {
 
@@ -26,20 +28,21 @@ public class PostJobActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_job);
 
-
-    /*
-    //database
+        //database
         mAuth=FirebaseAuth.getInstance();
-        FirebaseUser mUser=mAuth.getCurrentUser();
-        String uId=mUser.getUid();
+        FirebaseUser mUser = mAuth.getCurrentUser();
+        String uId = mUser.getUid();
 
+        JobPostDataBase = FirebaseDatabase.getInstance().getReference().child("Job Post").child(uId);
 
-
-
-*/
         //ini buat recycler viewnya
         recyclerView=findViewById(R.id.recycler_job_post_id);
-        LinearLayoutManager
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setStackFromEnd(true);
+        layoutManager.setReverseLayout(true);
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(layoutManager);
 
 
 
