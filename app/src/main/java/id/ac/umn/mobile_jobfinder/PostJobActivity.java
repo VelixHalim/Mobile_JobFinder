@@ -1,10 +1,13 @@
 package id.ac.umn.mobile_jobfinder;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -43,8 +46,45 @@ public class PostJobActivity extends AppCompatActivity {
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
 
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
 
+        View myView;
+
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            myView = itemView;
+        }
+
+        public void setJobTitle(String title) {
+            TextView mTitle = myView.findViewById(R.id.edtJobTitle);
+            mTitle.setText(title);
+        }
+
+        public void setJobDate(String date) {
+            TextView mDate = myView.findViewById(R.id.job_date);
+            mDate.setText(date);
+        }
+
+        public void setJobDesc(String desc) {
+            TextView mDesc = myView.findViewById(R.id.edtJobDesc);
+            mDesc.setText(desc);
+        }
+
+        public void setJobSkills(String skills) {
+            TextView mSkills = myView.findViewById(R.id.edtSkill);
+            mSkills.setText(skills);
+        }
+
+        public void setJobSalary(String salary) {
+            TextView mSalary = myView.findViewById(R.id.edtSalary);
+            mSalary.setText(salary);
+        }
     }
 }
