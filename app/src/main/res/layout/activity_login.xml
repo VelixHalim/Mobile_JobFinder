@@ -16,7 +16,7 @@
         android:layout_marginTop="25pt"
 
         android:layout_marginBottom="30pt"
-        android:fontFamily="sans-serif-thin"
+        android:fontFamily="@font/roboto_bold"
         android:text="Sign In"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -27,6 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Email"
+        android:fontFamily="@font/roboto_bold"
         android:inputType="textEmailAddress"
         android:layout_marginLeft="15pt"
         android:layout_marginRight="15pt"
@@ -39,6 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
+        android:fontFamily="@font/roboto_bold"
         android:inputType="textPassword"
         android:layout_marginLeft="15pt"
         android:layout_marginRight="15pt"
@@ -67,6 +69,7 @@
         android:layout_gravity="center_vertical"
         android:background="@drawable/btn_login"
         android:text="Sign In"
+        android:fontFamily="@font/roboto_bold"
         app:iconTint="@color/white" />
 
     <LinearLayout
