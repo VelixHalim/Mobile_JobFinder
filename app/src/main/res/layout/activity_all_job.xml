@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,12 +8,23 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
+    android:orientation="vertical"
     tools:context=".All_JobActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-            <include layout="@layout/toolbar" android:id="@+id/toolbar"/>
+
+        <include layout="@layout/toolbar"
+            android:id="@+id/all_job_post"/>
+
+        <Layout
+            android:layout_width="match_parent"
+            android:id="@+id/recycler_all_job"
+            android:layout_height="match_parent">
+
+        </Layout>
+
 
 
 <!--        <TextView-->
@@ -50,4 +61,4 @@
         app:menu="@menu/menu_main"
         android:fitsSystemWindows="true"/>
 
-</androidx.drawerlayout.widget.DrawerLayout>
+</LinearLayout>
