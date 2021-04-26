@@ -104,18 +104,10 @@ INI bagian firebase masih gatau harus diapain
                 return true;
             }
         });
-        //navigationView.setNavigationItemSelectedListener(this);
-        // end
-        //end toolbar
-    /*
-    ini bagian connect ke database juga
-
-        mAuth=FirebaseAuth.getInstance();
-        FirebaseUser mUser=mAuth.getCurrentUser();
-        String uID=mUser.getUid();
 
 
-*/
+
+
 
         //post job
         btnPost = findViewById(R.id.btnPost_Job);
@@ -161,12 +153,17 @@ INI bagian firebase masih gatau harus diapain
 
 
 
+                mAuth=FirebaseAuth.getInstance();
+                FirebaseUser mUser=mAuth.getCurrentUser();
+                String uID=mUser.getUid();
+
             }
+
         });
         //end post job
     }
 
-   /* private void InsertJob(){
+   private void InsertJob(){
 
         edtJobTitle=findViewById(R.id.edtJobTitle);
         edtJobDesc=findViewById(R.id.edtJobDesc);
@@ -177,7 +174,7 @@ INI bagian firebase masih gatau harus diapain
 
     }
 
- */
+
 
 
 
