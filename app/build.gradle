@@ -51,6 +51,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.0-alpha24'
     // Declare the dependencies for any other desired Firebase products
     // For example, declare the dependencies for Firebase Authentication and Cloud Firestore
+    //implementation 'com.firebaseui:firebase-ui-database:6.3.0'
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-firestore'
 }

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -15,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+//import com.firebase.ui.database.FirebaseRecyclerAdapter;
 
 import id.ac.umn.mobile_jobfinder.Model.Data;
 
@@ -49,7 +51,7 @@ public class PostJobActivity extends AppCompatActivity {
         faBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), InsertJobPostActivity));
+                startActivity(new Intent(getApplicationContext(), InsertJobPostActivity.class));
             }
         });
  }
@@ -57,12 +59,24 @@ public class PostJobActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
         FirebaseRecyclerAdapter<Data, MyViewHolder> adapter=new FirebaseRecyclerAdapter<Data, MyViewHolder>
                 (Data.class,
                         R.layout.job_post_item,
                         MyViewHolder.class,
                         JobPostDataBase
                 ) {
+
+            @NonNull
+            @Override
+            public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                return null;
+            }
+//
+//            @Override
+//            protected void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull Data model) {
+//                super(holder,position);
+//            }
 
             protected void populateViewHolder(MyViewHolder viewHolder, Data model, int position) {
                 viewHolder.setJobTitle(model.getTitle());
