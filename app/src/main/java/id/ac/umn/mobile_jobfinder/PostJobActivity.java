@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -62,18 +61,14 @@ public class PostJobActivity extends AppCompatActivity {
         super.onStart();
 
         FirebaseRecyclerAdapter<Data, MyViewHolder> adapter=new FirebaseRecyclerAdapter<Data, MyViewHolder>
-                () {
+                (
+                        Data.class,
+                        R.layout.job_post_item,
+                        MyViewHolder.class,
+                        JobPostDataBase
+                ) {
 
-            @NonNull
-            public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                return null;
-            }
-//
-//            @Override
-//            protected void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull Data model) {
-//                super(holder,position);
-//            }
-
+            @Override
             protected void populateViewHolder(MyViewHolder viewHolder, Data model, int position) {
                 viewHolder.setJobTitle(model.getTitle());
                 viewHolder.setJobDate(model.getDate());
@@ -83,40 +78,43 @@ public class PostJobActivity extends AppCompatActivity {
                 viewHolder.setJobSalary(model.getSalary());
             }
             };
+        recyclerView.setAdapter(adapter);
         }
 
         public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-            View myView;
+            View myview;
 
             public MyViewHolder(@NonNull View itemView) {
                 super(itemView);
-                myView = itemView;
+                myview = itemView;
             }
 
             public void setJobTitle(String title) {
-                TextView mTitle = myView.findViewById(R.id.edtJobTitle);
+                TextView mTitle = myview.findViewById(R.id.edtJobTitle);
                 mTitle.setText(title);
             }
 
             public void setJobDate(String date) {
-                TextView mDate = myView.findViewById(R.id.job_date);
+                TextView mDate = myview.findViewById(R.id.job_date);
                 mDate.setText(date);
             }
 
             public void setJobDesc(String desc) {
-                TextView mDesc = myView.findViewById(R.id.edtJobDesc);
+                TextView mDesc = myview.findViewById(R.id.edtJobDesc);
                 mDesc.setText(desc);
             }
 
             public void setJobSkills(String skills) {
-                TextView mSkills = myView.findViewById(R.id.edtSkill);
+                TextView mSkills = myview.findViewById(R.id.edtSkill);
                 mSkills.setText(skills);
             }
 
             public void setJobSalary(String salary) {
-                TextView mSalary = myView.findViewById(R.id.edtSalary);
+                TextView mSalary = myview.findViewById(R.id.edtSalary);
                 mSalary.setText(salary);
             }
+
+
         }
     }

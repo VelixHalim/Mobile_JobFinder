@@ -1,48 +1,41 @@
 package id.ac.umn.mobile_jobfinder;
 
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.FirebaseOptions;
+import com.google.firebase.database.DatabaseReference;
 
 import id.ac.umn.mobile_jobfinder.Model.Data;
 
-import androidx.annotation.NonNull;
+public abstract class FirebaseRecyclerAdapter<T, T1> extends RecyclerView.Adapter {
+    public FirebaseRecyclerAdapter(Class<T> dataClass, int alljobpost, Class<T1> allJobPostViewHolderClass, DatabaseReference mAllJobPost) {
+    }
 
-import com.google.firebase.FirebaseOptions;
+    @NonNull
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return null;
+    }
 
-import id.ac.umn.mobile_jobfinder.Model.Data;
-
-public class FirebaseRecyclerAdapter<T, T1> {
-
-
-        protected void
-        onBindViewHolder(@NonNull PostJobActivity.MyViewHolder holder, int position, @NonNull Data model)
-        {
-            holder.setJobTitle(model.getTitle());
-            holder.setJobDate(model.getDate());
-            holder.setJobDesc(model.getDescription());
-            holder.setJobDate(model.getDate());
-            holder.setJobSkills(model.getSkills());
-            holder.setJobSalary(model.getSalary());
-        }
-        @NonNull
-        public FirebaseOptions.Builder
-        onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
-        {
-
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_post_job, parent, false);
-           return null;
-        }
-
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
     }
 
+    @Override
+    public int getItemCount() {
+        return 0;
+    }
+
+    protected void populateViewHolder(AllJobActivity.AllJobPostViewHolder viewHolder, Data model, int position){
+        viewHolder.setJobTitle(model.getTitle());
+        viewHolder.setJobDate(model.getDate());
+        viewHolder.setJobDesc(model.getDescription());
+        viewHolder.setJobSkills(model.getSkills());
+        viewHolder.setJobSalary(model.getSalary());
+    }
+
+    protected abstract void populateViewHolder(PostJobActivity.MyViewHolder viewHolder, Data model, int position);
+}

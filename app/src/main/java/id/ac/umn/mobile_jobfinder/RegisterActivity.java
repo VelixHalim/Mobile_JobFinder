@@ -48,7 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         tvSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 Intent keHalamanLogin = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivityForResult(keHalamanLogin, 2);
                 finish();
@@ -56,10 +56,10 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
-            private Object Task;
+
 
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 String email = etRegEmail.getText().toString().trim();
                 String pass = etRegPassword.getText().toString().trim();
                 if (TextUtils.isEmpty(email)) {
@@ -77,6 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(getApplicationContext(), "Sucessful", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         }
                     }
                 });
