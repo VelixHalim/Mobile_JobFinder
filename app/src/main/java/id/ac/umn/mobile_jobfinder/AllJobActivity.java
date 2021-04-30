@@ -30,7 +30,7 @@ private DatabaseReference mAllJobPost;
     setSupportActionBar(toolbar);
     getSupportActionBar().setTitle("All Job Post");
 
-    mAllJobPost = FirebaseDatabase.getInstance().getReference().child("Job Post");
+    mAllJobPost = FirebaseDatabase.getInstance().getReference().child("Public Database");
     mAllJobPost.keepSynced(true);
     recyclerView = findViewById(R.id.recycler_all_job);
 

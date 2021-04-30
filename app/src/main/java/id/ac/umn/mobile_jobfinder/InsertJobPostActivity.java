@@ -42,6 +42,7 @@ public class InsertJobPostActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private DatabaseReference mJobPost;
+    private DatabaseReference mPublicDatabase;
 
 
     //end variable post job
@@ -71,7 +72,7 @@ INI bagian firebase masih gatau harus diapain
         String uId = mUser.getUid();
 
         mJobPost = FirebaseDatabase.getInstance().getReference().child("MobileJobFinder1").child(uId);
-
+        mPublicDatabase= FirebaseDatabase.getInstance().getReference().child("Public Database");
 
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
@@ -148,6 +149,7 @@ INI bagian firebase masih gatau harus diapain
                 String date = DateFormat.getDateInstance().format(new Date());
                 Data data = new Data(title, description,skills,salary,id,date);
                 mJobPost.child(id).setValue(data);
+                mPublicDatabase.child(id).setValue(data);
                 Toast.makeText(getApplicationContext()," Sucessfull", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(),PostJobActivity.class));
 
@@ -156,6 +158,7 @@ INI bagian firebase masih gatau harus diapain
                 mAuth=FirebaseAuth.getInstance();
                 FirebaseUser mUser=mAuth.getCurrentUser();
                 String uID=mUser.getUid();
+                InsertJob();
 
             }
 
