@@ -72,29 +72,30 @@ INI bagian firebase masih gatau harus diapain
         String uId = mUser.getUid();
 
         mJobPost = FirebaseDatabase.getInstance().getReference().child("MobileJobFinder1").child(uId);
-        mPublicDatabase= FirebaseDatabase.getInstance().getReference().child("Public Database");
+        mPublicDatabase = FirebaseDatabase.getInstance().getReference().child("Public Database");
+        InsertJob();
 
         navigationView.bringToFront();
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.nav_home :
-                        Toast.makeText(getApplicationContext(),"Balik ke home",Toast.LENGTH_LONG).show();
+                switch (item.getItemId()) {
+                    case R.id.nav_home:
+                        Toast.makeText(getApplicationContext(), "Balik ke home", Toast.LENGTH_LONG).show();
                         Intent InsertJob_ke_Home = new Intent(InsertJobPostActivity.this, MainActivity.class);
                         startActivityForResult(InsertJob_ke_Home, 7);
                         finish();
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
-                    case R.id.btnProfile :
-                        Toast.makeText(getApplicationContext(),"Buat profile",Toast.LENGTH_LONG).show();
+                    case R.id.btnProfile:
+                        Toast.makeText(getApplicationContext(), "Buat profile", Toast.LENGTH_LONG).show();
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
-                    case R.id.btnLogout :
-                        Toast.makeText(getApplicationContext(),"Logout",Toast.LENGTH_LONG).show();
+                    case R.id.btnLogout:
+                        Toast.makeText(getApplicationContext(), "Logout", Toast.LENGTH_LONG).show();
                         Intent InsertJob_ke_Logout = new Intent(InsertJobPostActivity.this, LoginActivity.class);
                         startActivityForResult(InsertJob_ke_Logout, 9);
                         finish();
@@ -105,88 +106,74 @@ INI bagian firebase masih gatau harus diapain
                 return true;
             }
         });
+    }
+
+
+        private void InsertJob(){
+
+            edtJobTitle=findViewById(R.id.edtJobTitle);
+            edtJobDesc=findViewById(R.id.edtJobDesc);
+            edtSkill=findViewById(R.id.edtSkill);
+            edtSalary=findViewById(R.id.edtSalary);
+
+            btnPost=findViewById(R.id.btnPost_Job);
+            btnPost.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String title = edtJobTitle.getText().toString().trim();
+                    String description = edtJobDesc.getText().toString().trim();
+                    String skills = edtSkill.getText().toString().trim();
+                    String salary = edtSalary.getText().toString().trim();
+
+                    if (TextUtils.isEmpty(title)) {
+                        edtJobTitle.setError("This Field is Required");
+                        return;
+                    }
+
+                    if (TextUtils.isEmpty(description)) {
+                        edtJobDesc.setError("This Field is Required");
+                        return;
+                    }
+                    if (TextUtils.isEmpty(skills)) {
+                        edtSkill.setError("This Field is Required");
+                        return;
+                    }
+                    if (TextUtils.isEmpty(salary)) {
+                        edtSalary.setError("This Field is Required");
+                        return;
+                    }
+
+
+                    String id = mJobPost.push().getKey();
+                    String date = DateFormat.getDateInstance().format(new Date());
+                    Data data = new Data(title, description, skills, salary, id, date);
+                    mJobPost.child(id).setValue(data);
+                    mPublicDatabase.child(id).setValue(data);
+                    Toast.makeText(getApplicationContext(), " Sucessfull", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), PostJobActivity.class));
 
 
 
-
-
-        //post job
-        btnPost = findViewById(R.id.btnPost_Job);
-        edtJobTitle = findViewById(R.id.edtJobTitle);
-        edtJobDesc = findViewById(R.id.edtJobDesc);
-        edtSkill = findViewById(R.id.edtSkill);
-        edtSalary = findViewById(R.id.edtSalary);
-
-    //error Message
-        btnPost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String title=edtJobTitle.getText().toString().trim();
-                String description=edtJobDesc.getText().toString().trim();
-                String skills=edtSkill.getText().toString().trim();
-                String salary=edtSalary.getText().toString().trim();
-
-                if(TextUtils.isEmpty(title)){
-                    edtJobTitle.setError("This Field is Required");
-                    return;
                 }
+            });
 
-                if(TextUtils.isEmpty(description)){
-                    edtJobDesc.setError("This Field is Required");
-                    return;
-                }
-                if(TextUtils.isEmpty(skills)){
-                    edtSkill.setError("This Field is Required");
-                    return;
-                }
-                if(TextUtils.isEmpty(salary)){
-                    edtSalary.setError("This Field is Required");
-                    return;
-                }
+        }
+            //post job
 
-                String id = mJobPost.push().getKey();
-                String date = DateFormat.getDateInstance().format(new Date());
-                Data data = new Data(title, description,skills,salary,id,date);
-                mJobPost.child(id).setValue(data);
-                mPublicDatabase.child(id).setValue(data);
-                Toast.makeText(getApplicationContext()," Sucessfull", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(),PostJobActivity.class));
+            //error Message
 
 
 
-                mAuth=FirebaseAuth.getInstance();
-                FirebaseUser mUser=mAuth.getCurrentUser();
-                String uID=mUser.getUid();
-                InsertJob();
 
+
+
+
+        @Override
+        public void onBackPressed () {
+            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.closeDrawer(GravityCompat.START);
+            } else {
+                super.onBackPressed();
             }
-
-        });
-        //end post job
-    }
-
-   private void InsertJob(){
-
-        edtJobTitle=findViewById(R.id.edtJobTitle);
-        edtJobDesc=findViewById(R.id.edtJobDesc);
-        edtSkill=findViewById(R.id.edtSkill);
-        edtSalary=findViewById(R.id.edtSalary);
-
-        btnPost=findViewById(R.id.btnPost_Job);
-
-    }
-
-
-
-
-
-    @Override
-    public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }else{
-            super.onBackPressed();
         }
     }
-}
