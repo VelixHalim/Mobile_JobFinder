@@ -3,6 +3,7 @@ package id.ac.umn.mobile_jobfinder;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -20,8 +21,9 @@ import com.google.firebase.auth.FirebaseAuth;
 public class RegisterActivity extends AppCompatActivity {
     private EditText etRegEmail, etRegPassword, etRetypePassword, etRegNama;
     private Button btnRegister;
-    private Button btnLogin;
+
     private TextView tvSignIn, tvIncorrectRetype;
+    private ProgressDialog mDialog;
 
     //Firebase auth
     private FirebaseAuth mAuth;
@@ -31,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         mAuth = FirebaseAuth.getInstance();
+        mDialog = new ProgressDialog(this);
 
         Registration();
     }
@@ -71,13 +74,17 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
 
                 }
-
+                mDialog.setMessage("Processing..");
+                mDialog.show();
                 mAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(getApplicationContext(), "Sucessful", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                            mDialog.dismiss();
+                        } else{
+                            Toast.makeText(getApplicationContext(),"Registration Failed ...  ",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
