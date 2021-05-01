@@ -18,14 +18,6 @@
         <include layout="@layout/toolbar"
             android:id="@+id/all_job_post"/>
 
-        <Layout
-            android:layout_width="match_parent"
-            android:id="@+id/recycler_all_job"
-            android:layout_height="match_parent">
-
-        </Layout>
-
-
 
 <!--        <TextView-->
 <!--            android:layout_width="wrap_content"-->

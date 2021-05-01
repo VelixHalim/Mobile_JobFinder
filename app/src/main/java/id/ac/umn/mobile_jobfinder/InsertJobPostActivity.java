@@ -39,19 +39,15 @@ public class InsertJobPostActivity extends AppCompatActivity {
     //variabel post job
     EditText edtJobTitle, edtJobDesc, edtSkill, edtSalary;
     private Button btnPost;
-
+    //end post job
+    //firebase
+    //private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
     private DatabaseReference mJobPost;
-    private DatabaseReference mPublicDatabase;
-
+    //private DatabaseReference mPublicDatabase;
+    //end firebase
 
     //end variable post job
-/*
-INI bagian firebase masih gatau harus diapain
-
-
-
-*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,14 +62,6 @@ INI bagian firebase masih gatau harus diapain
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("PostJob");
-
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser mUser = mAuth.getCurrentUser();
-        String uId = mUser.getUid();
-
-        mJobPost = FirebaseDatabase.getInstance().getReference().child("MobileJobFinder1").child(uId);
-        mPublicDatabase = FirebaseDatabase.getInstance().getReference().child("Public Database");
-        InsertJob();
 
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -106,74 +94,72 @@ INI bagian firebase masih gatau harus diapain
                 return true;
             }
         });
+        //end toolbar
+        //firebase
+        //mDatabase = FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser mUser = mAuth.getCurrentUser();
+        String uId = mUser.getUid();
+
+        mJobPost = FirebaseDatabase.getInstance().getReference().child("Job Post").child(uId);
+        //mPublicDatabase = FirebaseDatabase.getInstance().getReference().child("Public Database");
+        InsertJob();
     }
 
+    private void InsertJob(){
 
-        private void InsertJob(){
+        edtJobTitle=findViewById(R.id.edtJobTitle);
+        edtJobDesc=findViewById(R.id.edtJobDesc);
+        edtSkill=findViewById(R.id.edtSkill);
+        edtSalary=findViewById(R.id.edtSalary);
 
-            edtJobTitle=findViewById(R.id.edtJobTitle);
-            edtJobDesc=findViewById(R.id.edtJobDesc);
-            edtSkill=findViewById(R.id.edtSkill);
-            edtSalary=findViewById(R.id.edtSalary);
+        btnPost=findViewById(R.id.btnPost_Job);
+        btnPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String title = edtJobTitle.getText().toString().trim();
+                String description = edtJobDesc.getText().toString().trim();
+                String skills = edtSkill.getText().toString().trim();
+                String salary = edtSalary.getText().toString().trim();
 
-            btnPost=findViewById(R.id.btnPost_Job);
-            btnPost.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String title = edtJobTitle.getText().toString().trim();
-                    String description = edtJobDesc.getText().toString().trim();
-                    String skills = edtSkill.getText().toString().trim();
-                    String salary = edtSalary.getText().toString().trim();
-
-                    if (TextUtils.isEmpty(title)) {
-                        edtJobTitle.setError("This Field is Required");
-                        return;
-                    }
-
-                    if (TextUtils.isEmpty(description)) {
-                        edtJobDesc.setError("This Field is Required");
-                        return;
-                    }
-                    if (TextUtils.isEmpty(skills)) {
-                        edtSkill.setError("This Field is Required");
-                        return;
-                    }
-                    if (TextUtils.isEmpty(salary)) {
-                        edtSalary.setError("This Field is Required");
-                        return;
-                    }
-
-
-                    String id = mJobPost.push().getKey();
-                    String date = DateFormat.getDateInstance().format(new Date());
-                    Data data = new Data(title, description, skills, salary, id, date);
-                    mJobPost.child(id).setValue(data);
-                    mPublicDatabase.child(id).setValue(data);
-                    Toast.makeText(getApplicationContext(), " Sucessfull", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(), PostJobActivity.class));
-
-
-
+                if (TextUtils.isEmpty(title)) {
+                    edtJobTitle.setError("This Field is Required");
+                    return;
                 }
-            });
 
-        }
+                if (TextUtils.isEmpty(description)) {
+                    edtJobDesc.setError("This Field is Required");
+                    return;
+                }
+                if (TextUtils.isEmpty(skills)) {
+                    edtSkill.setError("This Field is Required");
+                    return;
+                }
+                if (TextUtils.isEmpty(salary)) {
+                    edtSalary.setError("This Field is Required");
+                    return;
+                }
+
+                String id = mJobPost.push().getKey();
+                String date = DateFormat.getDateInstance().format(new Date());
+                Data data = new Data(title, description, skills, salary, id, date);
+                mJobPost.child(id).setValue(data);
+                Toast.makeText(getApplicationContext(), " Sucessfull", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), PostJobActivity.class));
+
+            }
+        });
+    }
             //post job
 
             //error Message
-
-
-
-
-
-
-
-        @Override
-        public void onBackPressed () {
-            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                drawerLayout.closeDrawer(GravityCompat.START);
-            } else {
-                super.onBackPressed();
-            }
+    //toolbar
+    @Override
+    public void onBackPressed () {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
         }
     }
+}
